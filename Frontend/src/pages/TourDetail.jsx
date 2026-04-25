@@ -31,7 +31,7 @@ const TourDetail = () => {
   useEffect(() => {
     const fetchTour = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/tours/${id}`);
+        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/tours/${id}`);
         // Sort sections by order
         if (data.sections) {
           data.sections.sort((a, b) => a.order - b.order);
@@ -41,7 +41,7 @@ const TourDetail = () => {
         // Fetch existing progress
         try {
           const token = await getToken();
-          const { data: progress } = await axios.get(`http://localhost:5000/api/progress/${id}`, {
+          const { data: progress } = await axios.get(`${import.meta.env.VITE_API_URL}/api/progress/${id}`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           if (progress && progress.completedSections) {
@@ -103,7 +103,7 @@ const TourDetail = () => {
       // Save progress to backend
       try {
         const token = await getToken();
-        await axios.post(`http://localhost:5000/api/progress/${id}/section`, {
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/progress/${id}/section`, {
           sectionOrder: currentSection.order,
         }, {
           headers: { Authorization: `Bearer ${token}` },

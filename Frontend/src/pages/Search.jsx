@@ -39,7 +39,7 @@ const Search = () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await axios.get(`http://localhost:5000/api/plants/search?q=${debouncedTerm}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/plants/search?q=${debouncedTerm}`);
         // The backend returns a flat array, so axios puts it directly in response.data
         setResults(response.data || []);
       } catch (err) {

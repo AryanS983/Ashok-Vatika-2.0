@@ -28,7 +28,7 @@ const PlantDetails = () => {
     const fetchDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/plants/${id}`,
+          `${import.meta.env.VITE_API_URL}/api/plants/${id}`,
         );
         setPlant(response.data);
       } catch (err) {

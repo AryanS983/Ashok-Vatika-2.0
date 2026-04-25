@@ -19,8 +19,8 @@ const Tours = () => {
         // Fetch tours and progress in parallel
         const token = await getToken();
         const [toursRes, progressRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/tours'),
-          axios.get('http://localhost:5000/api/progress', {
+          axios.get(`${import.meta.env.VITE_API_URL}/api/tours`),
+          axios.get(`${import.meta.env.VITE_API_URL}/api/progress`, {
             headers: { Authorization: `Bearer ${token}` },
           }).catch(() => ({ data: [] })), // Fail silently if no progress
         ]);
